@@ -15,10 +15,6 @@ library(parallel)
 #library(foreach)
 #library(doParallel)
 
-
-#inputfile.data <- "/scratch/ek/apis/thelytoky/vcf/denise2017/popgen/geno.zyg.gz.zyg.sum.csv"
-#inputfile.win <- "/scratch/ek/apis/thelytoky/vcf/denise2017/popgen/geno.50SNPs.25overlap.windows"
-
 data <- read_tsv(inputfile.data, col_names = FALSE)
 wins <- read_tsv(inputfile.win, col_names = FALSE)
 #wins <- read_tsv(inputfile,na = "nan")

@@ -13,8 +13,6 @@ library(parallel)
 library(dplyr)
 
 
-#inputfile.data <- "/scratch/ek/apis/thelytoky/vcf/denise2017/popgen/geno.50SNPs.25overlap.with_medians.tsv.gz"
-
 df <- read_tsv(inputfile.data, col_names = TRUE)
 #na = "nan"
 #colnames(data) <- c("SCF","POS","Ns","HMZs","HTZs","SAMPLES")

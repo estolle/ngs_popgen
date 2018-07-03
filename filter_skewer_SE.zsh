@@ -33,13 +33,6 @@ PLOTSCRIPT="$HOME/scripts/filter_QCplot_no-sickle_no-clumpify.R"
 # install skewer, sickle, bbmap(clumpify.sh)
 # for QC plots: R, packages: tidyverse (ggplot2,readr,dplyr), cowplot,scales
 
-#./skewer.zsh $INPUTFOLDER $OUTPUTFOLDER $CPUs
-
-#INPUTFOLDER="/scratch/ek/reads/apis/Cridland2017"
-#OUTPUTFOLDER="/scratch/ek/reads/apis/Cridland2017/filtered_fastq"
-#CPUs=30
-
-
 #run:
 #~/scripts/skewer.zsh $INPUTFOLDER $OUTPUTFOLDER $CPUs
 

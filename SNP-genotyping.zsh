@@ -36,17 +36,11 @@ REF=$4
 VCF=$5
 
 
-#INPUTFOLDER="/scratch/ek/apis/thelytoky/bam/clones"
-#OUTPUTFOLDER="/scratch/ek/apis/thelytoky/vcf/clones"
-#CPUs=100
-#REF="/scratch/genomes/genomes_with_controls_MT_phiX_Wolbachia/Amel_4.5_scaffolds.fa"
-###master vcf
-#VCF="$HOME/scratch/apis/thelytoky/vcf/4_merged_vcf/selection.vcfcombine.biallelic.vcf.gz"
 
 #####
 FOLDERNAME=$(echo $INPUTFOLDER | rev | cut -d"/" -f 1 | rev) && echo $FOLDERNAME
 FILTEROUTFOLDER="$OUTPUTFOLDER/genotyping/filtered.sample"
-#FOLDERNAME="clones"
+
 
 mkdir -p $OUTPUTFOLDER
 mkdir -p $OUTPUTFOLDER/genotyping/raw
@@ -98,11 +92,6 @@ fi
 ## genotype
 
 ### MODIFY min base quality if necessary
-### MODIFY min mapping qual: Illumina HiSeq PE 150 bp, bwa mapping: 45-60; SOLiD bowtie mapping 250-255, SE 50bp bwa: 36-27, SE100 bp 45-60
-# Cridland: 32
-# new bam index for RNAseq mappings:
-# ls -1 *.bam | parallel -k -j20 "echo {} && sambamba index -p -t 20 {} {}.bai; echo {}"
-# Wallberg14 data: ERROR(freebayes): Couldn't find read group id (@RG tag) for BAM Alignment SRR1152244.3116971 at position 81 in sequence
 
 
 ulimit -n

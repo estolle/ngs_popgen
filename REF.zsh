@@ -5,27 +5,9 @@
 ############################################################################
 ## ./REF.zsh INPUTFASTA 
 #chmod -R 755 $HOME/scripts/REF.zsh
-## $HOME/scripts/REF.zsh $HOME/ref/Mqua/Mqua.fa.gz
-#REF="$HOME/ref/Amel/scaffold/Amel_4.5_scaffolds.fa.gz"
-#REF="$HOME/ref/Mqua/Mqua.fa.gz"
-#REF="/scratch/genomes/genomes_with_controls_MT_phiX_Wolbachia/Amel_4.5_scaffolds.fa"
 
-#mkdir /ref/Amel/scaffold
-#cd /ref/Amel/scaffold
-#AMEL45
-#http://hymenopteragenome.org/beebase/?q=download_sequences
-#wget http://hymenopteragenome.org/beebase/sites/hymenopteragenome.org.beebase/files/data/Amel_4.5_scaffolds.fa.gz
-#wget http://hymenopteragenome.org/beebase/sites/hymenopteragenome.org.beebase/files/data/consortium_data/amel_OGSv3.2.gff3.gz
-#wget http://hymenopteragenome.org/beebase/sites/hymenopteragenome.org.beebase/files/data/consortium_data/amel_OGSv3.2_cds.fa.gz
+#REF="$HOME/ref/ref.fa.gz"
 
-
-################ supplement REF.fa with mitochondrion, wolbachia, phix
-#mkdir -p ~/ref/ref_w_controls
-#cat ~/ref/Bter/Bter.fa ~/ref/wolbachia/wolbachia.fasta ~/ref/phiX/NC_001422.fasta > ~/ref/ref_w_controls/#Bter.fa
-#bwa index ~/ref/ref_w_controls/Bter.fa
-
-#cat ~/ref/Mqua/Mqua.fa ~/ref/Mqua/NC_026198_Mscut_mt.fasta ~/ref/wolbachia/wolbachia.fasta ~/ref/phiX/#NC_001422.fasta > ~/ref/ref_w_controls/Mqua.fa
-#bwa index ~/ref/ref_w_controls/Mqua.fa
 
 ############################################################################
 

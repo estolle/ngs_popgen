@@ -6,8 +6,6 @@ print(args[1])
 
 inputfile <- (args[1])
 
-#inputfile <- "/home/ek/scratch/apis/thelytoky/vcf/denise2017//genotyping/filtered.sample/stats.filtered.formatted.txt"
-
 #library(extrafontdb)
 library(extrafont)
 #library(cowplot)

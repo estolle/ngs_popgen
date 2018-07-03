@@ -1,7 +1,4 @@
 #Rscript
-#inputfile <- "/Melipona_allWorkers.R1.k21.kmc.count.txt"
-
-#inputfile <- "/scratch/scratchspace/QMUL_apocrita_temp_copy/kmc_fused/Sol_Mir6-25-bigB-p_clade2_709505-batch1.kmc.count.txt"
 
 args <- commandArgs(trailingOnly = TRUE)
 print(args[1])

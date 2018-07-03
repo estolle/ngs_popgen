@@ -17,13 +17,12 @@ ls $QUALIMAPJAR
 
 
 
-CPUs=30
-INPUTFOLDER="/scratch/scratchspace/melipona/data/merged"
-OUTPUTFOLDER="/home/es/scratch/scratchspace/melipona/bam"
-REF="$HOME/ref/ref_w_controls/Mqua.fa"
+#CPUs=30
+#INPUTFOLDER="/scratch/data/merged"
+#OUTPUTFOLDER="/scratch/bam"
+#REF="~/ref/reference.fa"
+#bwa index ~/ref/reference.fa
 
-#cat ~/ref/Mqua/Mqua.fa ~/ref/Mqua/NC_026198_Mscut_mt.fasta ~/ref/wolbachia/wolbachia.fasta ~/ref/phiX/NC_001422.fasta > ~/ref/ref_w_controls/Mqua.fa
-#bwa index ~/ref/ref_w_controls/Mqua.fa
 #~/scripts/mapping_bwa.zsh $INPUTFOLDER $OUTPUTFOLDER $CPUs $REF
 
 if [ $# -ne 4 ]; then

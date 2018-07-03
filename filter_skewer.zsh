@@ -29,26 +29,6 @@ PLOTSCRIPT="$HOME/scripts/filter_QCplot.R"
 # install skewer, sickle, bbmap(clumpify.sh)
 # for QC plots: R, packages: tidyverse (ggplot2,readr,dplyr), cowplot,scales
 
-#./skewer.zsh $INPUTFOLDER $OUTPUTFOLDER $CPUs
-#Melipona1_336855
-#Melipona1_336856
-#Melipona1_347805
-#Melipona1_349843
-
-#Melipona2_330052
-#Melipona2_336857
-#Melipona2_336858
-#Melipona2_347806
-
-#Melipona2_349844
-#Melipona_362009
-
-
-#INPUTFOLDER="/home/es/scratch/home/ek/data/melipona/data/reads/Melipona_362009"
-#OUTPUTFOLDER="/home/es/scratch/scratchspace/melipona/data/Melipona_362009"
-#CPUs=30
-
-
 #run:
 #~/scripts/skewer.zsh $INPUTFOLDER $OUTPUTFOLDER $CPUs
 

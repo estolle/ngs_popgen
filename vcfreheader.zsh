@@ -13,7 +13,7 @@ fi
 
 
 INPUTVCF=$1
-#INPUTVCF="$PROJECT/mt/vcf_master/mt_2.vcf.gz"
+
 INPUTFILENAME=$(echo $INPUTVCF | rev | cut -d"." -f3- | rev)
 
 

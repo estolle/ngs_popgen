@@ -1,4 +1,8 @@
 #!/bin/zsh
+
+# incomplete Script at the end
+
+
 ############################################################################
 # SNPcall with freebayes + R viz
 # Eckart Stolle, Sept 2017
@@ -22,22 +26,6 @@ INPUTFOLDER=$1
 OUTPUTFOLDER=$2
 CPUs=$3
 REF=$4
-
-#CPUs=30
-#INPUTFOLDER="$HOME/scratch/scratchspace/melipona/bam"
-#OUTPUTFOLDER="$HOME/scratch/scratchspace/melipona/vcf_mqua"
-#REF="$HOME/ref/ref_w_controls/Mqua.fa"
-#cat $HOME/ref/Mqua/Mqua.fa $HOME/ref/Mqua/NC_026198_Mscut_mt.fasta $HOME/ref/wolbachia/wolbachia.fasta $HOME/ref/phiX/NC_001422.fasta > $HOME/ref/ref_w_controls/Mqua.fa
-#bwa index $HOME/ref/ref_w_controls/Mqua.fa
-#$HOME/scripts/mapping_bwa.zsh $INPUTFOLDER $OUTPUTFOLDER $CPUs $REF
-
-#exclude mitochondrion
-#MT NC_026198.1 Mscut
-#MT="NC_026198"
-#NC_001566.1 Apis_mellifera_ligustica_mitochondrion
-#CP001391.1 Wolbachia_sp_wRi
-#AM999887.1 Wolbachia_Culex_quinquefasciatus_Pel_strain_wPip
-#NC_001422.1 phiX
 
 MT="NC_001566.1"
 PHIX="NC_001422.1"
@@ -189,157 +177,6 @@ tabix -fp vcf $OUTPUTFOLDER/scaffolds_htz/{}.vcf.gz"
 mkdir -p $OUTPUTFOLDER/scaffolds_htz_fused
 zcat $OUTPUTFOLDER/scaffolds_htz/*.vcf.gz | vcffirstheader | bgzip -f -@ 20 -c /dev/stdin > $OUTPUTFOLDER/scaffolds_htz_fused/Mqua.GT.vcf.gz
 tabix -fp vcf $OUTPUTFOLDER/scaffolds_htz_fused/Mqua.GT.vcf.gz
-
-
-vt validate  $OUTPUTFOLDER/scaffolds_htz_fused/Mqua.GT.vcf.gz
-#1 773 845
-
-
-
-cat Q01.depth.HiCov.bed | grep KQ435687.1'\t'299473
-
-
-
-
-
-
-
-
-
-
-
-#| vcfallelicprimitives --keep-info --keep-geno -t DECOMPOSED | vcffixup - | vcfstreamsort | vt normalize -n -r $REF -q - | vcfuniqalleles | bgzip -@ 2 -f -c /dev/stdin > $OUTPUTFOLDER/scaffolds/{}.joint.vcf.gz && \
-#tabix -fp vcf $OUTPUTFOLDER/scaffolds/{}.joint.vcf.gz"
-
-#vt cat -n $OUTPUTFOLDER/scaffolds/*.joint.vcf.gz -o $OUTPUTFOLDER/combine.joint.vcf
-#bgzip -f -@ $CPUs -c $OUTPUTFOLDER/combine.joint.vcf > $OUTPUTFOLDER/combine.joint.vcf.gz && tabix -fp vcf $OUTPUTFOLDER/combine.joint.vcf.gz
-#vt peek $OUTPUTFOLDER/combine.joint.vcf.gz > $OUTPUTFOLDER/combine.stats
-
-#zcat ${OUTPUTFOLDER}/scaffolds_SSRfiltered/KQ435840.1:0-3151304.vcf.gz | vcffilter -f '! ( TYPE = ins | TYPE = del | TYPE = complex )' |\
-#vcfallelicprimitives --keep-info --keep-geno -t DECOMPOSED |\
-#grep -v -P 'TYPE=ins|TYPE=del|TYPE=complex' |\
-#vcfstreamsort -a | vcfuniq | bgzip -f -@ 20 -c /dev/stdin > $OUTPUTFOLDER/scaffolds_filtered/KQ435840.1:0-3151304.snps.vcf.gz && \
-#tabix -fp vcf $OUTPUTFOLDER/scaffolds_filtered/KQ435840.1:0-3151304.snps.vcf.gz
-
-#zcat $OUTPUTFOLDER/scaffolds_filtered/*.snps.vcf.gz | vcffirstheader | bgzip -f -@ 20 -c /dev/stdin > $OUTPUTFOLDER/Mqua.tmp.vcf.gz
-
-zcat $OUTPUTFOLDER/Mqua.tmp.vcf.gz | vcfstreamsort | bgzip -f -@ 20 -c /dev/stdin > $OUTPUTFOLDER/Mqua.snps.vcf.gz && \
-tabix -fp vcf $OUTPUTFOLDER/Mqua.snps.vcf.gz
-
-rm -f $OUTPUTFOLDER/Mqua.snps.vcf.gz
-
-vcfstats $OUTPUTFOLDER/Mqua.snps.vcf.gz
-vt peek $OUTPUTFOLDER/Mqua.snps.vcf.gz
-#stats: no. of samples                     :         53
-#       no. of chromosomes                 :        713
-#       no. of SNP                         :   10216499
-#           2 alleles                      :        10136906 (2.94) [7567142/2569764]
-#           3 alleles                      :           78748 (0.55) [55685/101811]
-#           4 alleles                      :             845 (0.50) [844/1691]
-
-
-dumpContigsFromHeader
-popStats --type GL --target 0,1,2,3,4,5,6,7 --file
-#FATAL: unknown genotype: .|.
-vcfcountalleles
-vcfhetcount
-vcfaltcount
-vcfhethomratio
-vcfinfosummarize
-vcfnumalt ##stream # NUMALT based on sample GT
-vcfnull2ref
-vcfglxgt
-vcfnulldotslashdot
-vcfgenoexpandnull https://github.com/vcflib/vcflib/pull/92
-vcfstats
-vcfsitesummarize KQ436020.1:0-6715.snps.vcf.gz
-
-zcat KQ438543.1:0-1874.vcf.gz | vcfnull2ref - | vcfnumalt -
-zcat KQ436014.1:0-4520.snps.vcf.gz | grep -v "#" | head -n100
-popStats --type GL --target 0,1,2,3,4,5,6,7 --file KQ436014.1:0-4520.snps.vcf.gz
-
-zcat KQ436014.1:0-4520.snps.vcf.gz | vcffilter -f '( AB > 0 )'
-
-
-mkdir -p $OUTPUTFOLDER/scaffolds_speciesdiff
-mkdir -p $OUTPUTFOLDER/scaffolds_htz
-cat $TARGETS | parallel --no-notice -k -j $CPUs \
-"echo {} && zcat ${OUTPUTFOLDER}/scaffolds_filtered/{}.snps.vcf.gz | vcffilter -f '( AB = 0 )' |\
-bgzip -f -@ 3 -c /dev/stdin > $OUTPUTFOLDER/scaffolds_speciesdiff/{}.vcf.gz && \
-tabix -fp vcf $OUTPUTFOLDER/scaffolds_speciesdiff/{}.vcf.gz"
-/home/es/scratch/scratchspace/melipona/vcf_mqua/scaffolds_speciesdiff/KQ435744.1:0-4956068.vcf.gz
-Unsorted positions on sequence #1: 3578257 followed by 3578254
-KQ435793.1:0-1549515
-parallel: Warning: No more file handles. Raising ulimit -n or /etc/security/limits.conf may help.
-
-cat $TARGETS | parallel --no-notice -k -j $CPUs \
-"echo {} && zcat ${OUTPUTFOLDER}/scaffolds_filtered/{}.snps.vcf.gz | vcffilter -f '( AB > 0 )' |\
-bgzip -f -@ 3 -c /dev/stdin > $OUTPUTFOLDER/scaffolds_htz/{}.vcf.gz && \
-tabix -fp vcf $OUTPUTFOLDER/scaffolds_htz/{}.vcf.gz"
-[E::hts_idx_push] Unsorted positions on sequence #1: 1259531 followed by 1259523
-tbx_index_build failed: /home/es/scratch/scratchspace/melipona/vcf_mqua/scaffolds_htz/KQ435714.1:0-1906513.vcf.gz
-
-
-
-
-vcfstats $OUTPUTFOLDER/scaffolds_speciesdiff/KQ438551.1:0-461204.vcf.gz
-#11196
-vcfstats $OUTPUTFOLDER/scaffolds_htz/KQ438551.1:0-461204.vcf.gz
-#total variant sites:	2574 of which 2518 (0.978244) are biallelic and 56 (0.021756) are multiallelic, total variant alleles:	2630
-
-vcfglxgt KQ438543.1:0-1874.vcf.gz
-zcat KQ438543.1:0-1874.vcf.gz | vcfglxgt
-zcat KQ438543.1:0-1874.vcf.gz | vcfnull2ref - | vcfnumalt -
-zcat KQ438543.1:0-1874.vcf.gz | vcfnumalt -
-0:.:.:.:.:.:.:.
-0/1:56:48,8:48:1656:8:261:-6.95035,0,-132.409
-28%
-0/1:	38:	8,20,7:	8:	256:	20:	500:	-36.7182,-0.233497,-14.809
-GT:	DP:	AD:	RO:	QR:	AO:	QA:	GL
-zcat KQ438543.1:0-1874.vcf.gz | vcfnull2ref - | vcfnumalt - | vcffilter -g '( ( DP ) > 4 )' | vcffilter -t -a -k -g '! ( ( RO / DP ) < 0.35 )'
-#vcffilter -t -a -k -g '! ( ( AO / DP ) < 0.35 )'
-| vcffilter -t -a -k -g '! ( ( RO / DP ) < 0.35 )'
-
-
-### separate monomorphic sites (species differences)
-
-
-## concat
-
-##extract per sample
-#rm -rf $PROJECT/mt/vcf_individuals_biallelicQ20
-mkdir -p $PROJECT/mt/vcf_individuals_biallelicQ20
-vcfsamplenames $PROJECT/mt/vcf_master/MT.biallelicQ20.vcf.gz | parallel -j 1 "vcfkeepsamples $PROJECT/mt/vcf_master/MT.biallelicQ20.vcf.gz {} | vcffixup - | grep -v -P AO:QA:GL'\t'0: | bgzip -f -@ 30 -c /dev/stdin > $PROJECT/mt/vcf_individuals_biallelicQ20/MT.biallelicQ20.{}.vcf.gz; echo {}; tabix -fp vcf $PROJECT/mt/vcf_individuals_biallelicQ20/MT.biallelicQ20.{}.vcf.gz"
-
-
-
-
-
-
-## re-decompose
-#zcat mastervcf/combine.joint.pops_no_dups.decomposed.noSSR.noGT.noInDel.vcf.gz | vcfallelicprimitives --keep-info --keep-geno -t DECOMPOSED | vcffixup - | #vcfstreamsort | vt normalize -n -r $REF -q - | vcfuniqalleles > mastervcf/tmp.vcf
-#bgzip -@ $CPUs -f -c mastervcf/tmp.vcf > mastervcf/combine.joint.pops_no_dups.decomposed.noSSR.noGT.noInDel.decomposed.vcf.gz && \
-#tabix -fp vcf mastervcf/combine.joint.pops_no_dups.decomposed.noSSR.noGT.noInDel.decomposed.vcf.gz
-#rm -f mastervcf/tmp.vcf
-
-zcat $OUTPUTFOLDER/combine.filtered2.vcf.gz | grep -v "#" | cut -f4,5 | sort | uniq
-
-vt validate $OUTPUTFOLDER/combine.filtered2.vcf.gz
-vt validate $OUTPUTFOLDER/combine.InDel.vcf.gz
-
-rm -f $OUTPUTFOLDER/combine.joint.vcf
-
-vt peek $OUTPUTFOLDER/combine.filtered2.vcf.gz
-
-#####################
-
-
-
-
-
-
-
-
 
 
 

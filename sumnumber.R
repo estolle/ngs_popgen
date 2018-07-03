@@ -8,7 +8,7 @@ inputfile <- (args[1])
 
 library(readr)
 library(dplyr)
-#inputfile <- ("/home/ek/scratch/apis/thelytoky/vcf/Cridland2017/popgen/geno.Group1.23.zyg.gz")
+
 df <- read_tsv(inputfile, col_names = FALSE, skip = 1)
 #drop.cols <- c(df$X1, df$X2)
 #df %>% select_vars(-one_of(drop.cols)) -> df2

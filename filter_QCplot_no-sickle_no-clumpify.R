@@ -7,8 +7,7 @@ print(args[1])
 work_dir <- (args[1])
 inputfile <- (args[2])
 
-#inputfile <- "trimming.stats"
-#work_dir <- "/scratch/ek/reads/apis/Wallberg_Webster_global_honebees_SOLiD/capensis/filtered_fastq/QC"
+
 setwd(work_dir)
 #list.files(path = work_dir)
 
@@ -22,7 +21,7 @@ library(ggplot2)
 #library(RColorBrewer)
 #library(scales)
 #plyr
-source('/home/ek/scripts/es.r')
+source('/home/xxxxx/scripts/es.r')
 #loadfonts()
 
 bold.16.text <- element_text(face = "bold", color = "black", size = 16)

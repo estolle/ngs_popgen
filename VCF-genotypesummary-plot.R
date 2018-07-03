@@ -6,8 +6,6 @@ print(args[1])
 
 inputfile <- (args[1])
 
-#inputfile <- "/scratch/ek/apis/thelytoky/vcf/denise2017/denise2017.genotypesummary"
-
 #library(extrafontdb)
 library(extrafont)
 #library(cowplot)

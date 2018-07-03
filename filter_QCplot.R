@@ -7,10 +7,9 @@ print(args[1])
 work_dir <- (args[1])
 inputfile <- (args[2])
 
-#inputfile <- "trimming.stats"
-#work_dir <- "/scratch/ek/reads/apis/Cridland2017/filtered_fastq/QC"
+
 setwd(work_dir)
-#list.files(path = work_dir)
+
 
 library(extrafontdb)
 library(extrafont)
@@ -21,8 +20,7 @@ library(ggplot2)
 library(tidyverse)
 library(RColorBrewer)
 library(scales)
-#plyr
-source('/home/ek/scripts/es.r')
+#source('/home/xxx/scripts/es.r')
 #loadfonts()
 
 bold.16.text <- element_text(face = "bold", color = "black", size = 16)

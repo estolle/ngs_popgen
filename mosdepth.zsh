@@ -7,7 +7,6 @@ if [ $# -ne 1 ]; then
 fi
 
 INPUT=$1
-#INPUT="bam/Sol_U14-1-littleb-p_clade7B_712505-batch2.bam"
 BAM=$(echo $INPUT | rev | cut -d"/" -f 1 | cut -d"." -f 2 | rev)
 FOLDER=$(echo $INPUT | rev | cut -d"/" -f2- | rev)
 mkdir -p $FOLDER/bamdepth

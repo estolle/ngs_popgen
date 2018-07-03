@@ -2,11 +2,7 @@
 CPUs=15
 
 REHEADERSCRIPT="$HOME/scripts/vcfreheader.zsh"
-REHEADERSCRIPT="$PROJECT/bin/vcfreheader.zsh"
-#Mqua
-#MT="NC_026198"
 
-#Soli
 MT="NC_014672"
 
 cat $REF.fai | grep $MT > $REF.mt.fai

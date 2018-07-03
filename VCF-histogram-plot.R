@@ -7,8 +7,6 @@ print(args[1])
 
 inputfile <- (args[1])
 
-#inputfile <- "/scratch/ek/apis/thelytoky/vcf/denise2017/vcf.histogramdata.txt"
-
 library(extrafont)
 library(dplyr)
 library(ggplot2)

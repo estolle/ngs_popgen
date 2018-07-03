@@ -27,12 +27,6 @@ CPUs=10
 # !! Check your VCFs genotype declaration
 echo "genotype field format/abbreviation used here: GT:GQ:DP:AD:RO:QR:AO:QA:GL"
 
-#FOLDERNAME=denise2017
-#OUTPUTFOLDER="$HOME/scratch/apis/thelytoky/vcf/denise2017/"
-#VCFINPUT="$OUTPUTFOLDER/genotyping/raw.filtered.fused.sample/$FOLDERNAME.707501.raw.filtered.vcf.gz"
-#SAMPLE=707501
-#FILTEROUTFOLDER="$OUTPUTFOLDER/genotyping/filtered.sample"
-
 
 
 # make a temporary folder in the RAM
